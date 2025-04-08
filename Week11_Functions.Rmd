@@ -46,7 +46,10 @@ The braces indicate that the lines of code are a group that gets run together.
 Let's write out our first function. We want to calculate shrub volumes.
 
 ```{r}
-
+calc_shrub_volume <- function(length, width, height){
+  volume <- length * width * height
+  return(volume)
+}
 ```
 
 It is important to note that writing the function does not create the function. We have to remember to run the code to create the function and add it to our environment.
@@ -56,13 +59,15 @@ When we run this code chunk above, we can see that the function gets added to ou
 Let's use our new function.
 
 ```{r}
-
+calc_shrub_volume(0.8, 1.6, 2)
+calc_shrub_volume(1, 2, 3)
 ```
 
 As with other functions, we can store the output as an object to use later.
 
 ```{r}
-
+shrub_vol <- calc_shrub_volume(0.8, 1.6, 2)
+shrub_vol
 ```
 
 #### Let's Practice!
@@ -80,6 +85,9 @@ Similarly, the only thing our environment know about the function is the output 
 So, in the function above, we can't "access" variables or arguments that are created within the function. The function exists within it's own environment, so to speak.
 
 ```{r eval=FALSE}
+width
+volume
+
 
 ```
 
@@ -94,7 +102,13 @@ As with many of the functions that we have already used in this class, we can se
 For example, if many of our shrubs are the same height, we could specify that the default height should be 1.
 
 ```{r}
+calc_shrub_volume <- function(length, width, height = 1){
+  volume <- length * width * height
+  return(volume)
+}
 
+calc_shrub_volume(0.8, 1.6)
+calc_shrub_volume(0.8, 1.6, 2.0)
 ```
 
 ### When do we use argument names?
@@ -104,7 +118,21 @@ While you don't always have to name the arguments you are specifying, there are 
 As we saw above, as long as you specify arguments in the correct order, they do not need to be named. On the other hand, if you specify arguments out of the order in which they are written into the function or you are skipping some arguments (using the default) and then specifying later arguments, it is necessary to name them.
 
 ```{r}
+# different order
+calc_shrub_volume(height = 2, length = 0.8, width = 1.6)
+```
 
+```{r}
+# what if height = 1 (default) is first?
+calc_shrub_volume <- function(height = 1, length, width){
+  volume <- length * width * height
+  return(volume)
+}
+
+# this will work
+calc_shrub_volume(length = 0.8, width = 1.6)
+# this will not
+# calc_shrub_volume(0.8, 1.6)
 ```
 
 With some complicated functions, the order of the arguments is often challenging to remember, so using names by default is a good idea.
@@ -112,7 +140,14 @@ With some complicated functions, the order of the arguments is often challenging
 Similarly, when there are lots of optional arguments, you will often need to name them if you are using something other than the default. This is standard convention.
 
 ```{r}
+# back to the original structure
+calc_shrub_volume <- function(length, width, height = 1){
+  volume <- length * width * height
+  return(volume)
+}
 
+# convention is that we name optional arguments
+calc_shrub_volume(0.8, 1.6, height = 2)
 ```
 
 ## Combining Functions
