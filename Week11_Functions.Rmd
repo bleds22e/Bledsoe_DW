@@ -46,7 +46,12 @@ The braces indicate that the lines of code are a group that gets run together.
 Let's write out our first function. We want to calculate shrub volumes.
 
 ```{r}
-calc_shrub_volume <- function(length, width, height){
+# Add comments to code to ask questions or offer suggestions
+# For example, I might suggest putting the functions that are used in the code at the top of the document or in a separate file, as is best practice!
+
+# You can also make edits to code directly (adding a comment about why you made the change should go along with that).
+# rename function to "calc_volume" (from "calc_shrub_volume") to make more general
+calc_volume <- function(length, width, height){
   volume <- length * width * height
   return(volume)
 }
